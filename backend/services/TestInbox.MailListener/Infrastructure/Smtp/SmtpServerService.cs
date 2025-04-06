@@ -20,7 +20,7 @@ public class SmtpServerService : IHostedService
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        _smtpServer?.Shutdown();
+        _smtpServer.Shutdown();
         return Task.CompletedTask;
     }
 }
