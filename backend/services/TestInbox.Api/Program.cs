@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using TestInbox.Api.Application.Interfaces;
+using TestInbox.Api.Application.UseCases;
 using TestInbox.Api.Infrastructure.Persistence;
+using TestInbox.Api.Infrastructure.Queue;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISaveEmailUseCase, SaveEmailUseCase>();
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp => ConnectionMultiplexer.Connect("localhost"));
+builder.Services.AddHostedService<EmailQueueConsumer>();
 
 var app = builder.Build();
 
