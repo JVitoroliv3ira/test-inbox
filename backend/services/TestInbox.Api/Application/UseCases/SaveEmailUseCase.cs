@@ -8,9 +8,9 @@ public class SaveEmailUseCase(
     IUnitOfWork unitOfWork
 ) : ISaveEmailUseCase
 {
-    public async Task ExecuteAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task ExecuteAsync(Email email, CancellationToken ct = default)
     {
-        await emailRepository.InsertAsync(email, cancellationToken);
-        await unitOfWork.CommitAsync(cancellationToken);
+        await emailRepository.InsertAsync(email, ct);
+        await unitOfWork.CommitAsync(ct);
     }
 }
