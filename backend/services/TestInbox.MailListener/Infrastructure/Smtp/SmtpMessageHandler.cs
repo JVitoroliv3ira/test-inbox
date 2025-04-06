@@ -3,8 +3,8 @@ using MimeKit;
 using SmtpServer;
 using SmtpServer.Protocol;
 using SmtpServer.Storage;
+using TestInbox.Domain.Entities;
 using TestInbox.MailListener.Application.Interfaces;
-using TestInbox.MailListener.Domain.Entities;
 
 namespace TestInbox.MailListener.Infrastructure.Smtp;
 

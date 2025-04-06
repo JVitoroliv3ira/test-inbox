@@ -1,4 +1,4 @@
-using TestInbox.MailListener.Domain.Entities;
+using TestInbox.Domain.Entities;
 
 namespace TestInbox.MailListener.Application.Interfaces;
 

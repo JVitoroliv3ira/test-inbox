@@ -1,5 +1,5 @@
+using TestInbox.Domain.Entities;
 using TestInbox.MailListener.Application.Interfaces;
-using TestInbox.MailListener.Domain.Entities;
 
 namespace TestInbox.MailListener.Application.UseCases;
 

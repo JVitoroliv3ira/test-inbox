@@ -1,4 +1,4 @@
-namespace TestInbox.MailListener.Domain.Entities;
+﻿namespace TestInbox.Domain.Entities;
 
 public class Email
 {
