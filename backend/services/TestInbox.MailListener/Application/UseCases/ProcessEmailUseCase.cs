@@ -3,13 +3,10 @@ using TestInbox.MailListener.Application.Interfaces;
 
 namespace TestInbox.MailListener.Application.UseCases;
 
-public class ProcessEmailUseCase : IEmailProcessor
+public class ProcessEmailUseCase(IEmailQueue emailQueue) : IEmailProcessor
 {
-    public Task ProcessEmailAsync(Email email, CancellationToken cancellationToken)
+    public async Task ProcessEmailAsync(Email email, CancellationToken cancellationToken)
     {
-        Console.WriteLine(email.From);
-        Console.WriteLine(email.Subject);
-        
-        return Task.CompletedTask;
+        await emailQueue.EnqueueAsync(email);
     }
 }
