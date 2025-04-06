@@ -5,12 +5,14 @@ using TestInbox.Api.Application.Interfaces;
 namespace TestInbox.Api.Infrastructure.Persistence;
 
 public class Repository<T>(
-    DbSet<T> dbSet
+    AppDbContext dbContext    
 ) : IRepository<T> where T : class
 {
+    private readonly DbSet<T> _dbSet = dbContext.Set<T>();
+    
     public async Task InsertAsync(T entity, CancellationToken ct = default)
     {
-        await dbSet.AddAsync(entity, ct);
+        await _dbSet.AddAsync(entity, ct);
     }
 
     public async Task<IEnumerable<T>> ListByConditionAsync(
@@ -18,21 +20,21 @@ public class Repository<T>(
         CancellationToken ct = default
     )
     {
-        return await dbSet.Where(predicate).ToListAsync(ct);
+        return await _dbSet.Where(predicate).ToListAsync(ct);
     }
 
     public async Task<T?> GetByConditionAsync(Expression<Func<T, bool>> predicate, CancellationToken ct = default)
     {
-        return await dbSet.FirstOrDefaultAsync(predicate, ct);
+        return await _dbSet.FirstOrDefaultAsync(predicate, ct);
     }
 
     public void Delete(T entity)
     {
-        dbSet.Remove(entity);
+        _dbSet.Remove(entity);
     }
 
     public IQueryable<T> AsQueryable()
     {
-        return dbSet.AsQueryable();
+        return _dbSet.AsQueryable();
     }
 }
