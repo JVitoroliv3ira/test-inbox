@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInbox.MailListener", "services\TestInbox.MailListener\TestInbox.MailListener.csproj", "{946E1C2F-BBE3-46FB-BFFF-49450AE08D2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{946E1C2F-BBE3-46FB-BFFF-49450AE08D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946E1C2F-BBE3-46FB-BFFF-49450AE08D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946E1C2F-BBE3-46FB-BFFF-49450AE08D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946E1C2F-BBE3-46FB-BFFF-49450AE08D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
