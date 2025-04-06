@@ -5,6 +5,7 @@ using SmtpServer;
 using SmtpServer.Storage;
 using TestInbox.MailListener.Application.Interfaces;
 using TestInbox.MailListener.Application.UseCases;
+using TestInbox.MailListener.Infrastructure.Queue;
 using TestInbox.MailListener.Infrastructure.Smtp;
 
 var config = new ConfigurationBuilder()
@@ -27,6 +28,7 @@ var builder = Host.CreateDefaultBuilder()
             .Build();
         
         services.AddSingleton(smtpOptions);
+        services.AddSingleton<IEmailQueue, RedisEmailQueue>();
         
         services.AddScoped<IEmailProcessor, ProcessEmailUseCase>();
         services.AddScoped<IMessageStore, SmtpMessageHandler>();
