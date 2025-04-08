@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISaveEmailUseCase, SaveEmailUseCase>();
+builder.Services.AddScoped<IGetEmailDetailsUseCase, GetEmailDetailsUseCase>();
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp => ConnectionMultiplexer.Connect("localhost"));
 builder.Services.AddHostedService<EmailQueueConsumer>();
