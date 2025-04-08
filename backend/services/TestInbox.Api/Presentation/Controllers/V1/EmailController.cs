@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using TestInbox.Api.Application.Interfaces;
 using TestInbox.Api.Application.Interfaces.UseCases;
 using TestInbox.Api.Presentation.Dtos.Input;
 
