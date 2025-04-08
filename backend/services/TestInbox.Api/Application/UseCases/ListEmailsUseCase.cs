@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using TestInbox.Api.Application.Interfaces;
+using TestInbox.Api.Application.Interfaces.UseCases;
 using TestInbox.Api.Presentation.Dtos.Input;
 using TestInbox.Api.Presentation.Dtos.Output;
 using TestInbox.Domain.Entities;

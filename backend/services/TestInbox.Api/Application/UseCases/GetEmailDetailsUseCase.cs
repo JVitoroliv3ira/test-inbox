@@ -1,5 +1,6 @@
 using TestInbox.Api.Application.Errors;
 using TestInbox.Api.Application.Interfaces;
+using TestInbox.Api.Application.Interfaces.UseCases;
 using TestInbox.Api.Presentation.Dtos.Output;
 using TestInbox.Domain.Entities;
 using TestInbox.Domain.ValueObjects;

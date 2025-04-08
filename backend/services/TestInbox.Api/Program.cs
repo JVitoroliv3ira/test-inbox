@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 using TestInbox.Api.Application.Interfaces;
+using TestInbox.Api.Application.Interfaces.UseCases;
 using TestInbox.Api.Application.UseCases;
 using TestInbox.Api.Infrastructure.Persistence;
 using TestInbox.Api.Infrastructure.Queue;

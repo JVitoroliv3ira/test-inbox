@@ -2,7 +2,7 @@ using TestInbox.Api.Application.Errors;
 using TestInbox.Api.Presentation.Dtos.Output;
 using TestInbox.Domain.ValueObjects;
 
-namespace TestInbox.Api.Application.Interfaces;
+namespace TestInbox.Api.Application.Interfaces.UseCases;
 
 public interface IGetEmailDetailsUseCase
 {
