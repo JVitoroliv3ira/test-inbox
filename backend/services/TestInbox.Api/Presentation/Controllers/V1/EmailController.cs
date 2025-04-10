@@ -8,7 +8,8 @@ namespace TestInbox.Api.Presentation.Controllers.V1;
 [ApiController]
 public class EmailController(
     IGetEmailDetailsUseCase getEmailDetailsUseCase,
-    IListEmailsUseCase listEmailsUseCase
+    IListEmailsUseCase listEmailsUseCase,
+    IDeleteEmailsUseCase deleteEmailsUseCase
 ) : ControllerBase
 {
     [HttpGet("{id:int}")]
@@ -28,5 +29,16 @@ public class EmailController(
         var result = await listEmailsUseCase.ExecuteAsync(query, ct);
         
         return Ok(result);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromBody] BulkDeleteEmailsInputDto deleteEmailsInput, CancellationToken ct)
+    {
+        var result = await deleteEmailsUseCase.ExecuteAsync(deleteEmailsInput, ct);
+
+        return result.Match<IActionResult>(
+            l => l.ToActionResult(),
+            r => Ok()
+        );
     }
 }
