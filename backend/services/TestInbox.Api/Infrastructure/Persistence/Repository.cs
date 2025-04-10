@@ -33,6 +33,11 @@ public class Repository<T>(
         _dbSet.Remove(entity);
     }
 
+    public void BulkDelete(IEnumerable<T> entities, bool deleteAll = false)
+    {
+        _dbSet.RemoveRange(deleteAll ? _dbSet.AsQueryable() : entities);
+    }
+
     public IQueryable<T> AsQueryable()
     {
         return _dbSet.AsQueryable();
