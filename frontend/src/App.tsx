@@ -1,10 +1,15 @@
-import { Button } from "@/components/ui/button"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { EmailListPage } from "./features/email/pages/EmailListPage"
+import { EmailDetailPage } from "./features/email/pages/EmailDetailPage"
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Hello, World!</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<EmailListPage />} />
+        <Route path="/email/:id" element={<EmailDetailPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
