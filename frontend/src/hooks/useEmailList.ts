@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { fetchEmails } from "@/lib/api";
 import { EmailListItem } from "@/types/output/email";
 import { PaginatedResult } from "@/types/output/paginated";
+import { fetchEmails } from "@/lib/email";
 
 export function useEmailList(pageSize = 10) {
   const [result, setResult] = useState<PaginatedResult<EmailListItem>>();
