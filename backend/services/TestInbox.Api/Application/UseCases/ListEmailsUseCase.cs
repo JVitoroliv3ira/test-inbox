@@ -42,7 +42,7 @@ public class ListEmailsUseCase(
         }
 
         var emails = await baseQuery
-            .Skip((query.Page - 1) * query.PageSize)
+            .Skip((query.Page) * query.PageSize)
             .Take(query.PageSize)
             .Select(e => new EmailListItemOutputDto(
                 e.Id,

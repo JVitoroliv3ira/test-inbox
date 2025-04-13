@@ -7,6 +7,6 @@ public record PaginatedResultOutputDto<T>
     public int Page { get; init; }
     public int PageSize { get; init; }
     public int TotalPages => (int)Math.Ceiling((double)TotalCount / PageSize);
-    public bool HasNextPage => Page < TotalPages;
-    public bool HasPreviousPage => Page > 1;
+    public bool HasNextPage => Page < TotalPages - 1;
+    public bool HasPreviousPage => Page > 0;
 };
