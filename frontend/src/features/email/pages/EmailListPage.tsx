@@ -19,7 +19,7 @@ export function EmailListPage() {
         <div className="col-span-1 md:col-span-3 p-3 overflow-y-auto">
           <EmailList onCardClick={loadEmailDetails}/>
         </div>
-        <div className="col-span-1 md:col-span-2 p-3">
+        <div className="col-span-1 md:col-span-2 p-3 overflow-y-auto">
           {details && <EmailView email={details} onDelete={() => {}} />}
         </div>
       </div>

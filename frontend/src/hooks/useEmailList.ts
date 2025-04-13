@@ -2,46 +2,31 @@ import { useState, useEffect } from "react";
 import { EmailListItem } from "@/types/output/email";
 import { PaginatedResult } from "@/types/output/paginated";
 import { fetchEmails } from "@/lib/email";
+import { PaginatedQuery } from "@/types/input/paginated";
 
-export function useEmailList(pageSize = 10) {
-  const [result, setResult] = useState<PaginatedResult<EmailListItem>>();
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0);
-  const [searchTerm, setSearchTerm] = useState("");
+export function useEmailList(query: PaginatedQuery) {
+  const [result, setResult] = useState<PaginatedResult<EmailListItem> | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDebouncedSearch(searchTerm);
-      setPage(0);
-    }, 500);
-
-    return () => clearTimeout(timeout);
-  }, [searchTerm]);
-
-  useEffect(() => {
-    fetchData(page, debouncedSearch);
-  }, [page, debouncedSearch]);
-
-  const fetchData = async (page: number, term: string) => {
+  const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await fetchEmails({ page, pageSize, searchTerm: term });
+      const res = await fetchEmails(query);
       setResult(res);
     } catch (err) {
-      console.error("Erro ao buscar e-mails", err);
+      console.log(`Ocorreu um erro insperado ao buscar os e-mails: ${err}`);
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [query.page, query.searchTerm]);
 
   return {
     result,
-    loading,
-    page,
-    setPage,
-    searchTerm,
-    setSearchTerm,
+    loading
   };
 }
+
