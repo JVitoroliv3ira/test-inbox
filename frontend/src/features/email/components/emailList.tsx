@@ -5,7 +5,11 @@ import { EmailListSkeleton } from "./emailListSkeleton";
 import { useEmailList } from "@/hooks/useEmailList";
 import { EmailListItem } from "@/types/output/email";
 
-export function EmailList() {
+interface EmailListProps {
+  onCardClick: (id: number) => void
+}
+
+export function EmailList({ onCardClick }: EmailListProps) {
   const {
     result,
     loading,
@@ -29,7 +33,7 @@ export function EmailList() {
     }
 
     return result?.items.map((result: EmailListItem) => (
-      <EmailCard key={result.id} email={result} onClick={() => {}} />
+      <EmailCard key={result.id} email={result} onClick={() => { onCardClick(result.id) }} />
     ));
   };
 
