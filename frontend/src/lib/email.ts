@@ -1,7 +1,9 @@
 import { PaginatedQuery } from "@/types/input/paginated";
-import { EmailListItem } from "@/types/output/email";
+import { EmailDetails, EmailListItem } from "@/types/output/email";
 import { PaginatedResult } from "@/types/output/paginated";
 import { get } from "./api";
+
+const endpoint = '/Email';
 
 export async function fetchEmails(q: PaginatedQuery): Promise<PaginatedResult<EmailListItem>> {
   const params = new URLSearchParams({
@@ -10,5 +12,9 @@ export async function fetchEmails(q: PaginatedQuery): Promise<PaginatedResult<Em
     SearchTerm: q.searchTerm || "",
   });
 
-  return get<PaginatedResult<EmailListItem>>(`/Email?${params.toString()}`)
+  return get<PaginatedResult<EmailListItem>>(`${endpoint}?${params.toString()}`)
+}
+
+export async function getEmailDetails(id: number) {
+  return get<EmailDetails>(`${endpoint}/${id}`);
 }
