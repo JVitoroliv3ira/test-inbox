@@ -1,14 +1,29 @@
-import { PaginatedQuery } from "@/types/input/paginated";
-import { EmailListItem } from "@/types/output/email";
-import { PaginatedResult } from "@/types/output/paginated";
+const apiUrl = import.meta.env.VITE_API_URL;
 
-export async function fetchEmails(q: PaginatedQuery): Promise<PaginatedResult<EmailListItem>> {
-    const res = await fetch(`http://localhost:5247/v1/Email?Page=${q.page}&PageSize=${q.pageSize}&SearchTerm=${q.searchTerm}`);
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-    if (!res.ok) {
-        throw new Error("Ocorreu um erro ao buscar os e-mails.");
-    }
+async function request<T, B = undefined>(
+  method: HttpMethod,
+  endpoint: string,
+  body?: B,
+  headers?: HeadersInit
+): Promise<T> {
+  const res = await fetch(`${apiUrl}${endpoint}`, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
 
-    const json = await res.json();
-    return json;
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(errorText || "Erro ao fazer requisição.");
+  }
+
+  return res.json();
 }
+
+export const get = <T>(endpoint: string, headers?: HeadersInit) =>
+  request<T>("GET", endpoint, undefined, headers);
