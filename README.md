@@ -41,5 +41,5 @@ Pull requests são bem-vindos. Feedbacks, sugestões e melhorias podem ser abert
 
 ## 📄 Licença
 
-Distribuído sob a **Licença GPLv3**.  
+Este projeto está licenciado sob a **Licença MIT**.  
 Consulte o arquivo [LICENSE](./LICENSE) para mais informações.
